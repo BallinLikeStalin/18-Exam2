@@ -5,8 +5,8 @@ This module contains:
   -- Methods you must implement for the Cloud object
   
 Authors: David Mutchler, Dave Fisher, Matt Boutell, their colleagues,
-         and PUT_YOUR_NAME_HERE.  October 2018.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Eric Lee.  October 2018.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import time
 from numbers import Number
@@ -27,7 +27,7 @@ def main():
 
     # run_test_init()
     # run_test_rain()
-    # run_test_get_total_rain_amount()
+    run_test_get_total_rain_amount()
     # run_test_merge_cloud()
 
 
@@ -65,7 +65,6 @@ class Cloud(object):
           cloud1 = Cloud(10, 3)
             #   cloud1.capacity  is now 10
             #   cloud1.water     is now 3
- s
           cloud2 = Cloud(10, 35)
             #   cloud2.capacity  is now 10
             #   cloud2.water     is now 10
@@ -76,8 +75,12 @@ class Cloud(object):
           :type water: int | float
         """
         # ---------------------------------------------------------------------
-        # TODO: 2. Implement and test this method.
+        # done: 2. Implement and test this method.
         # ---------------------------------------------------------------------
+        self.capacity = capacity
+        self.water = water
+        if self.capacity <= self.water:
+            self.water = self.capacity
 
     def rain(self, rain_amount):
         """
@@ -124,7 +127,10 @@ class Cloud(object):
         # ---------------------------------------------------------------------
         # TODO: 3. Implement and test this method.
         # ---------------------------------------------------------------------
-
+        self.rain = rain_amount
+        if self.water <= self.rain:
+            self.rain = self.water
+        return self.rain
 
     def get_total_rain_amount(self):
         """
@@ -158,7 +164,8 @@ class Cloud(object):
         # ---------------------------------------------------------------------
         # TODO: 4. Implement and test this method.
         # ---------------------------------------------------------------------
-
+        total_rain_amount = self.water - self.rain
+        return total_rain_amount
 
     def merge_cloud(self, another_cloud):
         """
@@ -189,9 +196,12 @@ class Cloud(object):
             #   cloud4.water      is 10
         """
         # ---------------------------------------------------------------------
-        # TODO: 5. Implement and test this method.
+        # done: 5. Implement and test this method.
         # ---------------------------------------------------------------------
-
+        self.capacity = self.capacity + another_cloud.capacity
+        self.water = self.water + another_cloud.water
+        another_cloud.capacity = 0
+        another_cloud.water = 0
 
 ###############################################################################
 # The TEST functions for the  Cloud  class begin here.
